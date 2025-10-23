@@ -10,6 +10,8 @@ use Illuminate\Http\RedirectResponse;
 
 class FarmController extends Controller
 {
+
+
     public function index(): View
     {
         $farms = auth()->user()->farms()->withCount('plants')->paginate(12);

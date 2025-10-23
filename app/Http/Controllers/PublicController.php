@@ -26,8 +26,9 @@ class PublicController extends Controller
     }
 
     public function farms(): View
-    {
-        return view('public.farms');
+    {  $farms = Farm::where('is_public', true)->paginate(12);
+
+        return view('public.farm-index',compact('farms'));
     }
 
     public function showFarm(string $slug): View

@@ -16,7 +16,7 @@
             <a href="{{ route('public.plants.show', $plant->plant_code) }}" class="text-sm font-medium text-green-600 dark:text-green-400 hover:underline" aria-label="View {{ $plant->name }}">View →</a>
 
             @if(auth()->check() && auth()->id() === $plant->farm->user_id)
-                <a href="{{ route('plants.edit', $plant->id) }}" class="text-sm px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-gray-700 dark:text-gray-200 hover:bg-gray-200">Edit</a>
+                <a href="{{ route('plants.edit', $plant) }}" class="text-sm px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-gray-700 dark:text-gray-200 hover:bg-gray-200">Edit</a>
             @endif
         </div>
     </div>

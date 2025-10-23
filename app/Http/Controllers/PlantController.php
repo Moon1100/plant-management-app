@@ -142,4 +142,10 @@ class PlantController extends Controller
         return redirect()->route('public.farms.show', $farm->slug)
             ->with('success', 'Plant deleted successfully!');
     }
+
+
+    public function authorize($ability, $arguments = [])
+    {
+        return app('Illuminate\Contracts\Auth\Access\Gate')->authorize($ability, $arguments);
+    }
 }
