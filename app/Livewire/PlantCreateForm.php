@@ -18,6 +18,10 @@ class PlantCreateForm extends Component
     public $insertion_date = '';
     public $farm_id = '';
     public $newImages = [];
+    public $type_ids = [];
+
+    protected $listeners = ['typesUpdated' => 'setTypes'];
+
 
     protected array $rules = [
         'name' => 'required|string|max:255',
@@ -45,6 +49,11 @@ class PlantCreateForm extends Component
         $this->newImages = array_values($this->newImages);
     }
 
+    public function setTypes($ids)
+    {
+        $this->type_ids = $ids ?: [];
+    }
+
     public function save()
     {
         $this->validate();
@@ -69,6 +78,20 @@ class PlantCreateForm extends Component
         $plant = new Plant($data);
         $plant->save();
 
+        if (!empty($this->type_ids)) {
+            $plant->types()->sync($this->type_ids);
+        }
+
+        // create initial PlantUpdate record if notes provided
+        if (!empty($this->notes)) {
+            $plant->updates()->create([
+                'user_id' => auth()->id(),
+                'status' => 'initial',
+                'description' => $this->notes,
+                'recorded_at' => now(),
+            ]);
+        }
+
         session()->flash('message', 'Plant created successfully!');
 
         // Redirect to public show if plant_code available, otherwise to farms.index
@@ -83,6 +106,7 @@ class PlantCreateForm extends Component
     {
         return view('livewire.plant-create-form', [
             'farms' => auth()->check() ? auth()->user()->farms : collect([]),
+            'types' => \App\Models\Type::all(),
         ]);
     }
 }

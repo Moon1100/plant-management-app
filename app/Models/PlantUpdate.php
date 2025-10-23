@@ -14,7 +14,12 @@ class PlantUpdate extends Model
         'plant_id',
         'user_id',
         'status',
+        'title',
+        'description',
         'note',
+        'height',
+        'pests',
+        'diseases',
         'photos',
         'recorded_at',
     ];

@@ -39,5 +39,25 @@ class DatabaseSeeder extends Seeder
         if ($farm->plants()->count() < 5) {
             \App\Models\Plant::factory()->count(5 - $farm->plants()->count())->for($farm)->create();
         }
+
+        // Seed types
+        $this->call([\Database\Seeders\TypeSeeder::class]);
+
+        // Attach some random types to each plant and create an initial update if missing
+        $types = \App\Models\Type::all()->pluck('id')->toArray();
+        foreach (\App\Models\Plant::all() as $plant) {
+            if (count($types) > 0) {
+                $plant->types()->sync(collect($types)->random(rand(0, min(3, count($types))))->toArray());
+            }
+
+            if ($plant->updates()->count() === 0) {
+                $plant->updates()->create([
+                    'user_id' => $user->id,
+                    'status' => 'initial',
+                    'description' => $plant->notes ?: 'Initial record',
+                    'recorded_at' => now(),
+                ]);
+            }
+        }
     }
 }

@@ -53,6 +53,11 @@ class Plant extends Model
         return $this->hasMany(PlantUpdate::class)->orderBy('recorded_at', 'desc');
     }
 
+    public function types(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Type::class);
+    }
+
     public function generateQrCode(): string
     {
         $url = route('plants.show', $this->plant_code);

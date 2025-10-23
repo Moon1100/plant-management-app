@@ -41,6 +41,12 @@
         </div>
 
         <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Types / Tags</label>
+            <livewire:type-selector :selected="$type_ids" />
+            <p class="text-xs text-gray-500 mt-2">Search and select types. Add a new type inline if it doesn't exist.</p>
+        </div>
+
+        <div>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Images</label>
             @if($newImages)
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">

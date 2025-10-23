@@ -27,6 +27,13 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="md:col-span-2">
+                @if($plant->types && $plant->types->count() > 0)
+                    <div class="mb-4 flex flex-wrap gap-2">
+                        @foreach($plant->types as $type)
+                            <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">{{ $type->icon ?? '' }} {{ $type->name_en }}</span>
+                        @endforeach
+                    </div>
+                @endif
                 @if($plant->images && count($plant->images) > 0)
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         @foreach($plant->images as $image)
@@ -84,45 +91,7 @@
         </div>
     </div>
 
-    @if($isOwner)
-        <div class="bg-white rounded-lg shadow-md p-6">
-            <h2 class="text-2xl font-semibold mb-4">Add Update</h2>
-            <livewire:plant-update-form :plant="$plant" />
-        </div>
-    @endif
-
     <div class="bg-white rounded-lg shadow-md p-6">
-        <h2 class="text-2xl font-semibold mb-4">Updates ({{ $updates->total() }})</h2>
-
-        @forelse($updates as $update)
-            <div class="border-b border-gray-200 pb-4 mb-4 last:border-b-0">
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="font-semibold">{{ $update->title }}</h3>
-                    <span class="text-sm text-gray-500">{{ $update->recorded_at->format('M d, Y') }}</span>
-                </div>
-
-                <p class="text-gray-700 mb-3">{{ $update->description }}</p>
-
-                @if($update->photos && count($update->photos) > 0)
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
-                        @foreach($update->photos as $photo)
-                            <img src="{{ Storage::url($photo) }}"
-                                 alt="Update photo"
-                                 class="w-full h-20 object-cover rounded">
-                        @endforeach
-                    </div>
-                @endif
-
-                <p class="text-xs text-gray-500 mt-2">
-                    By {{ $update->user->name ?? 'Unknown' }}
-                </p>
-            </div>
-        @empty
-            <p class="text-gray-500">No updates yet.</p>
-        @endforelse
-
-        <div class="mt-6">
-            {{ $updates->links() }}
-        </div>
+        <livewire:plant-update-manager :plant="$plant" />
     </div>
 </div>
