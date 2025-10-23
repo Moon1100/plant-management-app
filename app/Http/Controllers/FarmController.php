@@ -30,10 +30,11 @@ class FarmController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        $farm = auth()->user()->farms()->create([
-            ...$validated,
+        $data = array_merge((array) $validated, [
             'slug' => Str::slug($validated['name']),
         ]);
+
+        $farm = auth()->user()->farms()->create($data);
 
         return redirect()->route('public.farms.show', $farm->slug)
             ->with('success', 'Farm created successfully!');
@@ -67,10 +68,11 @@ class FarmController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        $farm->update([
-            ...$validated,
+        $data = array_merge((array) $validated, [
             'slug' => Str::slug($validated['name']),
         ]);
+
+        $farm->update($data);
 
         return redirect()->route('public.farms.show', $farm->slug)
             ->with('success', 'Farm updated successfully!');

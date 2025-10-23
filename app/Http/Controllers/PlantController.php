@@ -23,7 +23,7 @@ class PlantController extends Controller
     public function create(Request $request): View
     {
 
-    
+
         $farms = auth()->user()->farms;
         $selectedFarm = $request->get('farm') ? Farm::find($request->get('farm')) : null;
 
@@ -52,10 +52,11 @@ class PlantController extends Controller
             }
         }
 
-        $plant = Plant::create([
-            ...$validated,
+        $data = array_merge((array) $validated, [
             'images' => $images,
         ]);
+
+        $plant = Plant::create($data);
 
         return redirect()->route('public.plants.show', $plant->plant_code)
             ->with('success', 'Plant created successfully!');
@@ -114,10 +115,11 @@ class PlantController extends Controller
             }
         }
 
-        $plant->update([
-            ...$validated,
+        $data = array_merge((array) $validated, [
             'images' => array_values($images),
         ]);
+
+        $plant->update($data);
 
         return redirect()->route('public.plants.show', $plant->plant_code)
             ->with('success', 'Plant updated successfully!');

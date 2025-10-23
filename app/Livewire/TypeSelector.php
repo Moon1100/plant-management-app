@@ -31,7 +31,7 @@ class TypeSelector extends Component
             $this->selected[] = $id;
         }
 
-        $this->emitUp('typesUpdated', $this->selected);
+        $this->dispatch('typesUpdated', $this->selected);
     }
 
     public function createNew()
@@ -50,7 +50,7 @@ class TypeSelector extends Component
 
         $this->newName = '';
         $this->selected[] = $type->id;
-        $this->emitUp('typesUpdated', $this->selected);
+        $this->dispatch('typesUpdated', $this->selected);
     }
 
     public function getResultsProperty()

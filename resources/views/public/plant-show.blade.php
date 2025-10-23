@@ -4,7 +4,7 @@
 @section('content')
 <div class="max-w-5xl mx-auto py-12 px-4 sm:px-6 lg:px-8 animate-fadeIn">
 
-    {{-- PLANT HEADER CARD --}}
+    {{-- 🌿 PLANT HEADER CARD --}}
     <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 p-8 mb-10 transition-all duration-300 hover:shadow-2xl">
         <div class="flex flex-col md:flex-row gap-8">
             {{-- Image --}}
@@ -66,11 +66,24 @@
         </div>
     </div>
 
-    {{-- UPDATES SECTION --}}
+    {{-- 🪴 PLANT UPDATES SECTION --}}
     <section class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 p-6 transition-all duration-300 hover:shadow-2xl">
-        <h2 class="text-2xl font-extrabold text-gray-800 dark:text-white mb-6 flex items-center gap-2 border-b border-gray-200 dark:border-gray-700 pb-2">
-            🪴 Plant Updates
-        </h2>
+        <div class="flex items-center justify-between mb-6 border-b border-gray-200 dark:border-gray-700 pb-3">
+            <h2 class="text-2xl font-extrabold text-gray-800 dark:text-white flex items-center gap-2">
+                🪴 Plant Updates
+            </h2>
+
+            {{-- Add Button for Farm Owner --}}
+            @if(auth()->check() && auth()->id() === $plant->farm->user_id)
+                <button
+
+                 onclick="Livewire.dispatch('openModal', { component: 'plant-update-modal', arguments: { plant: {{ $plant->id }} }})"
+
+                    class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-xl font-medium transition">
+                    + Add Update
+                </button>
+            @endif
+        </div>
 
         @if($plant->updates && $plant->updates->count())
             <div class="space-y-4">
@@ -109,6 +122,9 @@
             </div>
         @endif
     </section>
+
+    {{-- 💬 UPDATE MODAL --}}
+    {{-- Modal is opened via LivewireUI's openModal. No direct include needed. --}}
 </div>
 
 {{-- Fade animation --}}
