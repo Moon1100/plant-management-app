@@ -8,6 +8,16 @@
 
         <div class="mt-6">
             <a href="{{ route('plants.create', ['farm' => $farm]) }}" class="px-4 py-2 bg-green-600 text-white rounded">Add Plant</a>
+
+            <a href="{{ route('farms.edit', $farm) }}" class="ml-3 px-4 py-2 bg-blue-600 text-white rounded">Edit Farm</a>
+
+            <form method="POST" action="{{ route('farms.toggle-public', $farm) }}" class="inline-block ml-3">
+                @csrf
+                @method('PATCH')
+                <button type="submit" class="px-4 py-2 {{ $farm->is_public ? 'bg-yellow-500' : 'bg-gray-600' }} text-white rounded">
+                    {{ $farm->is_public ? 'Make Private' : 'Make Public' }}
+                </button>
+            </form>
         </div>
     </div>
 </div>

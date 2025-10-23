@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class FarmController extends Controller
 {
+    use AuthorizesRequests;
 
 
     public function index(): View
@@ -30,10 +32,12 @@ class FarmController extends Controller
             'name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'is_public' => 'sometimes|boolean',
         ]);
 
         $data = array_merge((array) $validated, [
             'slug' => Str::slug($validated['name']),
+            'is_public' => $request->boolean('is_public', false),
         ]);
 
         $farm = auth()->user()->farms()->create($data);
@@ -62,19 +66,27 @@ class FarmController extends Controller
 
     public function update(Request $request, Farm $farm): RedirectResponse
     {
+
+
         $this->authorize('update', $farm);
+
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'is_public' => 'sometimes|boolean',
         ]);
 
         $data = array_merge((array) $validated, [
             'slug' => Str::slug($validated['name']),
+            'is_public' => $request->boolean('is_public', $farm->is_public),
         ]);
 
         $farm->update($data);
+
+
+
 
         return redirect()->route('public.farms.show', $farm->slug)
             ->with('success', 'Farm updated successfully!');
@@ -89,4 +101,21 @@ class FarmController extends Controller
         return redirect()->route('farms.index')
             ->with('success', 'Farm deleted successfully!');
     }
+
+    /**
+     * Toggle the public visibility of the farm (owner-only).
+     */
+    public function togglePublic(Farm $farm): RedirectResponse
+    {
+        $this->authorize('update', $farm);
+
+        $farm->is_public = ! $farm->is_public;
+        $farm->save();
+
+        return redirect()->back()->with('success', 'Farm visibility updated.');
+    }
+
+
+
+
 }

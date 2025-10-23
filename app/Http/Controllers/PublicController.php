@@ -13,11 +13,15 @@ class PublicController extends Controller
     {
         $recentFarms = Farm::with('user')
             ->withCount('plants')
+            ->where('is_public', true)
             ->latest()
             ->take(6)
             ->get();
 
         $recentPlants = Plant::with('farm')
+            ->whereHas('farm', function ($query) {
+                $query->where('is_public', true);
+            })
             ->latest()
             ->take(8)
             ->get();

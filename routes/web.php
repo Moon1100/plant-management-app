@@ -28,6 +28,9 @@ Route::middleware('auth')->group(function () {
 
     // Owner farm management
     Route::resource('farms', FarmController::class)->except(['show']);
+    // Toggle public visibility without requiring full update payload
+    Route::patch('/farms/{farm}/toggle-public', [FarmController::class, 'togglePublic'])
+        ->name('farms.toggle-public');
     Route::get('/my-farms/{farm}', [FarmController::class, 'show'])->name('farms.show');
 
     // Owner plant management
