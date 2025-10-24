@@ -41,10 +41,10 @@
             placeholder="Add new type..."
             class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-xl
                    bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100
-                   focus:ring-2 focus:ring-blue-500 focus:outline-none placeholder-gray-400 dark:placeholder-gray-500" />
+                   focus:ring-2 focus:ring-green-500 focus:outline-none placeholder-gray-400 dark:placeholder-gray-500" />
         <button
             wire:click.prevent="createNew"
-            class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium transition">
+            class="px-4 py-2 rounded-xl bg-green-600 hover:bg-green-700 text-white font-medium transition">
             Add
         </button>
     </div>

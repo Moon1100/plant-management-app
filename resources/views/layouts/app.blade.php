@@ -46,7 +46,7 @@
                 <!-- Right side -->
                 <div class="flex items-center space-x-4">
                     {{-- 🌙 Theme Toggle --}}
-                    <button @click="$root.toggleTheme()"
+                    {{-- <button @click="$root.toggleTheme()"
                         class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300"
                         x-tooltip="Toggle dark mode">
                         <template x-if="!$root.darkMode">
@@ -63,7 +63,7 @@
                                     clip-rule="evenodd" />
                             </svg>
                         </template>
-                    </button>
+                    </button> --}}
 
                     @auth
                         <div class="hidden md:flex space-x-4">
@@ -151,7 +151,7 @@
     <!-- Flash Messages -->
     @if (session('success'))
         <div x-data="{ show: true }" x-show="show" x-transition
-            class="bg-green-50 dark:bg-green-900 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-100 px-4 py-3 rounded relative mx-4 mt-4">
+            class="max-w-xl bg-green-50 dark:bg-green-900 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-100 px-4 py-3 rounded relative mx-4 mt-4">
             <span class="block sm:inline">{{ session('success') }}</span>
             <button @click="show = false" class="absolute top-0 bottom-0 right-0 px-4 py-3">
                 <svg class="fill-current h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg"
