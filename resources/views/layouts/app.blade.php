@@ -101,7 +101,7 @@
                                 </form>
                             </div>
                         </div>
-                    @else
+                    {{-- @else
                         <!-- Google Sign-In -->
                         <div id="g_id_onload" data-client_id="{{ config('services.google.client_id') }}"
                             data-login_uri="{{ Route::has('auth.google.callback') ? route('auth.google.callback') : url('/auth/google/callback') }}"
@@ -113,7 +113,7 @@
                         <a href="{{ route('login') }}"
                             class="text-gray-500 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 font-medium">
                             Log Masuk
-                        </a>
+                        </a> --}}
                     @endauth
 
                     <!-- Mobile Menu Button -->
