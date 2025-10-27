@@ -36,15 +36,13 @@
                    Edit
                 </a>
 
-                <form method="POST" action="{{ route('farms.update', $farm) }}" class="inline-block">
-                    @csrf
-                    @method('PATCH')
-                    <input type="hidden" name="is_public" value="{{ $farm->is_public ? 0 : 1 }}">
-                    <button type="submit"
+               <form method="POST" action="{{ route('farms.toggle-public', $farm) }}" class="inline-block ml-3">
+                @csrf
+                @method('PATCH') <button type="submit"
                         class="px-3 py-1.5 text-sm border border-gray-300 dark:border-gray-700 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                         {{ $farm->is_public ? 'Make Private' : 'Make Public' }}
                     </button>
-                </form>
+            </form>
 
                 <a href="{{ route('plants.create', ['farm' => $farm->id]) }}"
                    class="px-3 py-1.5 text-sm border border-green-500 text-green-600 dark:text-green-400 rounded-md hover:bg-green-50 dark:hover:bg-green-900/30 transition">

@@ -15,7 +15,9 @@
                         <img src="{{ Storage::url($plant->images[0]) }}" alt="{{ $plant->name }}"
                             class="w-full h-full object-cover rounded-2xl">
                     @else
-                        <span class="text-5xl">🌱</span>
+                        <span class="text-7xl block text-center">
+                            {{ $plant->types->first()->icon ?: '🌿' }}
+                        </span>
                     @endif
                 </div>
 
@@ -56,12 +58,15 @@
                             @endif
 
                             @foreach ($plant->types as $type)
-                                <button
-                                    class="inline-flex items-center gap-2 px-4 rounded-full text-sm font-medium transition-all duration-200
-                       border focus:outline-none bg-green-600 border-green-600 text-white hover:bg-green-700">
-                                    <span>{{ $type->icon ?? '🌿' }}</span>
-                                    <span>{{ $type->name_en }}</span></button>
+                                <button type="button"
+                                    class="inline-flex items-center gap-2 px-4 rounded-full text-sm font-medium
+               border border-green-600 bg-green-600 text-white hover:bg-green-700
+               focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200">
+                                    {{-- <span>{{ $type->icon ?? '🌿' }}</span> --}}
+                                    <span>{{ $type->name_en }}</span>
+                                </button>
                             @endforeach
+
                         </div>
                     </div>
 

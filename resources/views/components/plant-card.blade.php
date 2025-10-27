@@ -5,7 +5,8 @@
         @if($plant->images && count($plant->images) > 0)
             <img src="{{ Storage::url($plant->images[0]) }}" alt="{{ $plant->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 rounded-t-2xl">
         @else
-            <div class="w-full h-full bg-gradient-to-br from-green-100 to-green-200 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center text-3xl rounded-t-2xl">🌿</div>
+            <div class="w-full h-full bg-gradient-to-br from-green-100 to-green-200 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center text-7xl rounded-t-2xl"> {{ $plant->types->first()->icon ?: '🌿' }}
+            </div>
         @endif
     </div>
 
