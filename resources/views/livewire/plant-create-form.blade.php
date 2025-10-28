@@ -45,7 +45,7 @@
             <livewire:type-selector :selected="$type_ids" />
             <p class="text-xs text-gray-500 mt-2">Search and select types. Add a new type inline if it doesn't exist.</p>
         </div>
-
+{{-- 
         <div>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Images</label>
             @if($newImages)
@@ -61,7 +61,7 @@
 
             <input wire:model="newImages" type="file" multiple accept="image/*" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-500">
             @error('newImages.*') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-        </div>
+        </div> --}}
 
         <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200 dark:border-gray-700">
             <a href="{{ route('farms.index') }}" class="px-5 py-2 border border-gray-300 dark:border-gray-700 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition">Cancel</a>

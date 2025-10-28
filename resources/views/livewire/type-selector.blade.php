@@ -23,7 +23,7 @@
                             ? 'bg-green-600 border-green-600 text-white hover:bg-green-700'
                             : 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-gray-300 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700' }}">
                 <span>{{ $type->icon ?? '🌿' }}</span>
-                <span>{{ $type->name_en }}</span>
+                <span>{{ $type->name_my }}</span>
                 @if($isSelected)
                     <span class="ml-1 text-xs bg-white/20 px-1.5 py-0.5 rounded-full">✓</span>
                 @endif

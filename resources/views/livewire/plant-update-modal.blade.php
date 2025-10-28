@@ -48,7 +48,7 @@
             @error('recorded_at') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
         </div>
 
-        <div>
+        {{-- <div>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Photos</label>
             <input type="file" multiple wire:model="photos" accept="image/*"
                 class="mt-1 w-full text-sm text-gray-700 dark:text-gray-200">
@@ -62,7 +62,7 @@
                     @endforeach
                 </div>
             @endif
-        </div>
+        </div> --}}
 
         <div class="flex justify-end gap-3 pt-3">
             <button type="button" wire:click="close"

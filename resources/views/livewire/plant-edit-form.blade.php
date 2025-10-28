@@ -51,7 +51,7 @@
         </div>
 
         {{-- 🌄 Existing Images --}}
-        @if($images && count($images))
+        {{-- @if($images && count($images))
             <div>
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Existing Images</label>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
@@ -70,10 +70,10 @@
                     @endforeach
                 </div>
             </div>
-        @endif
+        @endif --}}
 
         {{-- 📸 Add Images --}}
-        <div>
+        {{-- <div>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Add Images</label>
             <input
                 wire:model="newImages"
@@ -94,7 +94,7 @@
                     @endforeach
                 </div>
             @endif
-        </div>
+        </div> --}}
 
         {{-- 💾 Actions --}}
         <div class="flex justify-end gap-3 pt-4">
