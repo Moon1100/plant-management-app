@@ -16,8 +16,7 @@
                             class="w-full h-full object-cover rounded-2xl">
                     @else
                         <span class="text-7xl block text-center">
-                            {{ optional($plant->types->first())->icon ?? '🌿' }}
-                        </span>
+<x-plant-icon :plant="$plant" />                        </span>
                     @endif
                 </div>
 

@@ -69,8 +69,7 @@
                                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             @else
                                 <div class="w-full h-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-3xl">
-                                                                {{ optional($plant->types->first())->icon ?? '🌿' }}
-
+                                    <x-plant-icon :plant="$plant" />
                                 </div>
                             @endif
                         </div>
