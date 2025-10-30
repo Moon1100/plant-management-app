@@ -45,7 +45,7 @@
             </p>
         </div>
         <div class="relative">
-            <img src="{{ asset('images/home_farm.jpg') }}" alt="Urban farm"
+            <img src="{{ asset('images/home_farm.webp') }}" alt="Urban farm"
                  class="rounded-2xl shadow-lg transform hover:scale-105 transition duration-500">
         </div>
     </section>
@@ -53,7 +53,7 @@
     {{-- Section 2: For Farmers --}}
     <section class="max-w-6xl mx-auto py-20 px-6 grid md:grid-cols-2 gap-12 items-center mb-20">
         <div class="relative order-2 md:order-1">
-            <img src="{{ asset('images/home_garden.png') }}" alt="Farmer hand"
+            <img src="{{ asset('images/home_garden.webp') }}" alt="Farmer hand"
                  class="rounded-2xl shadow-lg transform hover:scale-105 transition duration-500">
         </div>
         <div class="space-y-4 order-1 md:order-2 " x-show="lang === 'en'" x-transition>
@@ -91,17 +91,17 @@
 
         <div class="mt-10 grid sm:grid-cols-3 gap-6">
             <div class="bg-gray-900 rounded-2xl p-6 hover:shadow-lg hover:-translate-y-1 transition">
-                <img src="/images/icon-plant.png" class="w-12 mx-auto mb-4">
+                <img src="/images/icon-plant.webp" class="w-12 mx-auto mb-4">
                 <h3 class="text-lg font-semibold text-green-400">Urban Growers</h3>
                 <p class="text-gray-400 text-sm">Grow your crops remotely and eat your own food.</p>
             </div>
             <div class="bg-gray-900 rounded-2xl p-6 hover:shadow-lg hover:-translate-y-1 transition">
-                <img src="/images/icon-farmer.png" class="w-12 mx-auto mb-4">
+                <img src="/images/icon-farmer.webp" class="w-12 mx-auto mb-4">
                 <h3 class="text-lg font-semibold text-green-400">Local Farmers</h3>
                 <p class="text-gray-400 text-sm">Gain stable funding and pre-booked buyers.</p>
             </div>
             <div class="bg-gray-900 rounded-2xl p-6 hover:shadow-lg hover:-translate-y-1 transition">
-                <img src="/images/icon-earth.png" class="w-12 mx-auto mb-4">
+                <img src="/images/icon-earth.webp" class="w-12 mx-auto mb-4">
                 <h3 class="text-lg font-semibold text-green-400">Environment</h3>
                 <p class="text-gray-400 text-sm">Reduced waste, efficient farming, better planet.</p>
             </div>
