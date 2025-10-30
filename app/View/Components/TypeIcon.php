@@ -32,7 +32,7 @@ class TypeIcon extends Component
 
 
         // Determine if it's an image file
-        $isImage = Str::endsWith($icon, ['.png', '.jpg', '.jpeg', '.svg', '.gif']);
+        $isImage = Str::endsWith($icon, ['.png', '.jpg', '.jpeg', '.svg', '.gif','.webp']);
 
 
         return view('components.type-icon', [

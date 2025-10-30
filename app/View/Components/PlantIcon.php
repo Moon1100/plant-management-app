@@ -20,7 +20,7 @@ class PlantIcon extends Component
         $icon = $type->icon ?? '🌿';
 
         // Determine if it's an image file
-        $isImage = Str::endsWith($icon, ['.png', '.jpg', '.jpeg', '.svg', '.gif']);
+        $isImage = Str::endsWith($icon, ['.png', '.jpg', '.jpeg', '.svg', '.gif','.webp']);
 
 
         return view('components.plant-icon', [
