@@ -17,6 +17,10 @@ Route::get('/plants/{plant_code}', [PublicController::class, 'showPlant'])
     ->where('plant_code', '^(?!create$|edit$|store$|update$|destroy$)[A-Za-z0-9\-_]+')
     ->name('public.plants.show');
 
+Route::get('/blogs/{slug}', [PublicController::class, 'showBlog'])
+    ->name('public.blogs.show');
+
+
 // Authentication routes
 require __DIR__.'/auth.php';
 
@@ -28,9 +32,7 @@ Route::middleware('auth')->group(function () {
 
     // Owner farm management
     Route::resource('farms', FarmController::class)->except(['show']);
-    // Toggle public visibility without requiring full update payload
-    Route::patch('/farms/{farm}/toggle-public', [FarmController::class, 'togglePublic'])
-        ->name('farms.toggle-public');
+    Route::patch('/farms/{farm}/toggle-public', [FarmController::class, 'togglePublic'])->name('farms.toggle-public');
     Route::get('/my-farms/{farm}', [FarmController::class, 'show'])->name('farms.show');
 
     // Owner plant management
@@ -39,17 +41,16 @@ Route::middleware('auth')->group(function () {
 });
 
 
-if (!\Illuminate\Support\Facades\Route::has('auth.google.callback')) {
-    \Illuminate\Support\Facades\Route::get('/auth/google/callback', function () {
+if (!Route::has('auth.google.callback')) {
+    Route::get('/auth/google/callback', function () {
         return redirect()->route('home');
     })->name('auth.google.callback');
 }
 
 // Ensure a named farms.index exists to avoid 'Route [farms.index] not defined' in views/redirects.
-if (!\Illuminate\Support\Facades\Route::has('farms.index')) {
-    \Illuminate\Support\Facades\Route::get('/farms', function () {
-        // Prefer public listing if available, otherwise fall back to home
-        if (\Illuminate\Support\Facades\Route::has('public.farms')) {
+if (!Route::has('farms.index')) {
+    Route::get('/farms', function () {
+        if (Route::has('public.farms')) {
             return redirect()->route('public.farms');
         }
 

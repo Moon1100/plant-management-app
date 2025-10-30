@@ -85,6 +85,21 @@
                     View all farms →
                 </a>
             </div>
+                 <div
+                class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 border border-gray-100 dark:border-gray-800 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white flex items-center gap-2">
+                       ☁️🌱 Cloud Farms <span class="font-bold">Comming Soon</span>
+                    </h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 leading-relaxed">
+                        Start your own cloud farms or grow your own crops digitally.
+                    </p>
+                </div>
+                <a href="{{ Route::has('public.blogs.show') ? route('public.blogs.show', ['slug' => 'cloud_farm']) : url('/blogs/cloud_farm') }}"
+                    class="text-green-600 dark:text-green-400 hover:underline text-sm mt-4 inline-block font-medium">
+                     Explore the idea →
+                </a>
+            </div>
         </aside>
     </div>
 </div>

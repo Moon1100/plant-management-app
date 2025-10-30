@@ -52,4 +52,9 @@ class PublicController extends Controller
 
         return view('public.plant-show', compact('plant'));
     }
+
+    public function showBlog(string $slug): View
+    {
+        return view('blog.'.$slug);
+    }
 }
